@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bank Managment System</title>
+    <title>Transaction History</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -18,24 +18,26 @@
           <li><a href="accounts.html">Accounts</a></li>
         </ul>
       </nav>
-
-      <div class="heroBanner"><h1>Bank Managment System</h1></div>
+      <div class="heroBanner"><h1>Transaction History</h1></div>
     </header>
 
-    <main class="accounts-Main">
-      <h1>Accounts</h1>
+    <main class="transaction-history-Main">
+      <div id="account-details">
+        <!-- Account details will be dynamically filled here -->
+      </div>
 
-      <div id="accounts-list">
-        <div class="account">
-          
-          </div>
-        </div>
+      <h2>Transaction History</h2>
+      <div id="history-list">
+        <!-- Transaction history will be dynamically filled here -->
       </div>
     </main>
 
     <footer></footer>
 
     <script src="script.js"></script>
+    <script>
+      // Call loadTransactionHistory when the page loads
+      window.onload = loadTransactionHistory;
+    </script>
   </body>
 </html>
-

@@ -148,3 +148,98 @@
     }
 
     /////////////////////////for transferAmount/////////////////////////////////////////
+
+    function transfer() {
+        console.log("transfer");
+        
+        const senderAccNo = document.getElementById('sender').value.trim();
+        const receiverAccNo = document.getElementById('receiver').value.trim();
+        const transferAmount = parseFloat(document.getElementById('transferAmount').value.trim());
+        
+        // Find sender and receiver accounts
+        const senderAccount = accounts.find(account => account.accno == senderAccNo);
+        const receiverAccount = accounts.find(account => account.accno == receiverAccNo);
+    
+        // Validate inputs
+        if (!senderAccount || !receiverAccount || isNaN(transferAmount) || transferAmount <= 0 || senderAccount.depositAmount < transferAmount) {
+            alert('Please fill in all fields correctly and ensure sufficient balance.');
+            return;
+        }
+    
+        // Deduct amount from sender
+        senderAccount.depositAmount -= transferAmount;
+        senderAccount.history.push({
+            type: 'transfer',
+            to: receiverAccNo,
+            amount: transferAmount,
+            date: new Date().toLocaleString(),
+        });
+    
+        // Add amount to receiver
+        receiverAccount.depositAmount += transferAmount;
+        receiverAccount.history.push({
+            type: 'transfer',
+            from: senderAccNo,
+            amount: transferAmount,
+            date: new Date().toLocaleString(),
+        });
+    
+        // Log and save updated accounts
+        console.log(senderAccNo, receiverAccNo, transferAmount, accounts);
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+    
+        alert(`Transferred ${transferAmount} from Account ${senderAccNo} to Account ${receiverAccNo}.`);
+    }
+
+
+    ///////////////////////////history///////////////////////
+
+
+    function viewTransactionHistory(index) {
+        // Save the index of the clicked account to localStorage to access it on the new page
+        localStorage.setItem('accountIndex', index);
+    
+        // Redirect to the transaction history page
+        window.location.href = 'transactionHistory.html';
+        window.onload = loadTransactionHistory;
+    }
+    
+    function loadTransactionHistory() {
+        const accountIndex = localStorage.getItem('accountIndex');
+        
+        if (accountIndex === null) {
+            alert('No account selected for viewing transaction history.');
+            return;
+        }
+    
+        const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+        const account = accounts[accountIndex];
+        if (!account) {
+            alert('Account not found.');
+            return;
+        }
+    
+        // Display account details
+        const accountDetailsDiv = document.getElementById('account-details');
+        accountDetailsDiv.innerHTML = `
+            <h3>Account Details</h3>
+            <p>${account.firstName} ${account.lastName}</p>
+            <p>Account No: ${account.accno}</p>
+            <p>Balance: $${account.depositAmount.toFixed(2)}</p>
+        `;
+    
+        // Display transaction history
+        const historyListDiv = document.getElementById('history-list');
+        historyListDiv.innerHTML = ''; // Clear any previous history
+    
+        account.history.forEach((entry) => {
+            const historyEntryDiv = document.createElement('div');
+            historyEntryDiv.className = 'history-entry';
+            historyEntryDiv.innerHTML = `
+                <p>Type: ${entry.type}</p>
+                <p>Amount: $${entry.amount.toFixed(2)}</p>
+                <p>Date: ${entry.date}</p>
+            `;
+            historyListDiv.appendChild(historyEntryDiv);
+        });
+    }
