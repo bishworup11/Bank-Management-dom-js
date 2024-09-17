@@ -94,7 +94,7 @@
     // for depositAmount/////////////////////////////////////////
 
     function deposit(){
-      console.log("deposit");
+      // console.log("deposit");
       const accnoD = document.getElementById('acccno').value.trim();
       const depAmount = parseFloat(document.getElementById('depAmount').value.trim());
       const existingAccount = accounts.find(account => account.accno == accnoD);
@@ -117,3 +117,34 @@
     localStorage.setItem('accounts', JSON.stringify(accounts));
 
     }
+
+    /////////////////////////for withdrawAmount/////////////////////////////////////////
+
+  
+    
+    function withdraw(){
+      console.log("withdraw");
+      const accnoD = document.getElementById('acccno').value.trim();
+      const depAmount = parseFloat(document.getElementById('depAmount').value.trim());
+      const existingAccount = accounts.find(account => account.accno == accnoD);
+
+      if ( !existingAccount|| isNaN(depAmount) || depAmount <= 0) {
+        alert('Please fill in all fields correctly.');
+        return;
+    }
+    const history1={
+      type: 'withdraw',
+      amount: depAmount,
+      date: new Date().toLocaleString(),
+  }
+
+     existingAccount.depositAmount -= depAmount;
+     existingAccount.history.push(history1);
+    // alert(`Deposited ${depAmount} to Account ${existingAccount.accno}. New balance is ${existingAccount.balance}.`);
+  
+    console.log(accnoD,depAmount,accounts,existingAccount);
+    localStorage.setItem('accounts', JSON.stringify(accounts));
+
+    }
+
+    /////////////////////////for transferAmount/////////////////////////////////////////
