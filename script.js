@@ -108,6 +108,9 @@ function deposit() {
   );
   const existingAccount = accounts.find((account) => account.accno == accnoD);
 
+  document.getElementById("acccno").value="";
+  document.getElementById("depAmount").value="";
+
   if (!existingAccount || isNaN(depAmount) || depAmount <= 0) {
     alert("Please fill in all fields correctly.");
     return;
@@ -131,9 +134,14 @@ function deposit() {
 function withdraw() {
   console.log("withdraw");
   const accnoD = document.getElementById("acccno").value.trim();
+  
   const depAmount = parseFloat(
     document.getElementById("depAmount").value.trim()
   );
+
+  document.getElementById("acccno").value="";
+  document.getElementById("depAmount").value="";
+
   const existingAccount = accounts.find((account) => account.accno == accnoD);
 
   if (!existingAccount || isNaN(depAmount) || depAmount <= 0) {
@@ -166,6 +174,10 @@ function transfer() {
   const transferAmount = parseFloat(
     document.getElementById("transferAmount").value.trim()
   );
+
+  document.getElementById("sender").value = "";
+  document.getElementById("receiver").value = "";
+  document.getElementById("transferAmount").value = "";
 
   // Find sender and receiver accounts
   const senderAccount = accounts.find(
