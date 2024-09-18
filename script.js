@@ -182,6 +182,7 @@ function transfer() {
     isNaN(transferAmount) ||
     transferAmount <= 0 ||
     senderAccount.depositAmount < transferAmount
+    || senderAccNo === receiverAccNo
   ) {
     alert("Please fill in all fields correctly and ensure sufficient balance.");
     return;
@@ -189,8 +190,10 @@ function transfer() {
 
   // reduse amount from sender
   senderAccount.depositAmount -= transferAmount;
+  let seText=`Transfer Sent to ${receiverAccNo}`;
+  let reText=`Transfer Received from ${senderAccNo}`;
   senderAccount.history.push({
-    type: "transfer sent to ${receiverAccNo}",
+    type: seText,
     amount: transferAmount,
     date: new Date().toLocaleString(),
   });
@@ -198,7 +201,7 @@ function transfer() {
   // Add amount to receiver
   receiverAccount.depositAmount += transferAmount;
   receiverAccount.history.push({
-    type: "transfer received from ${senderAccNo}",
+    type: reText,
     amount: transferAmount,
     date: new Date().toLocaleString(),
   });
