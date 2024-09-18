@@ -28,7 +28,7 @@ nav{
 
 }
 
-ul{
+nav ul{
    list-style: none;
    display: flex;
    flex-direction: row;
@@ -36,14 +36,22 @@ ul{
    align-items: center;
 }
 
-li{
+nav li{
    margin: 1rem;
+   padding: 0;
    border:2px solid rgba(255,255,1255, .3);
    background-color: rgb(14, 103, 126);
    border-radius: .5rem;
    min-width: 10rem;
    height: 2rem;
    align-content: center;
+}
+
+nav li:hover{
+   background-color: rgb(247, 252, 253);
+   border:2px solid rgba(255,255,1255, .3);
+   transform: scale(1.1);
+   color: rgb(4, 51, 63);
 }
 
 .heroBanner {
@@ -74,28 +82,34 @@ li{
   margin-top: 2vh;
 }
 
-.homeMain div{
-   width: 30vmin;
-   height: 25vmin;
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: center;
-   background-color: bisque;
-   /* color: rgb(255, 255, 255); */
-
+.homeMain div {
+  width: 30vmin;
+  height: 25vmin;
+ 
+  background-color: bisque;
+  padding: 0;
+  transition: background-color 0.3s; 
+  color: black;
 }
 
-.homeMain div:hover{
-   transform: 1.5;
-   background-color: rgb(207, 218, 218);
+.homeMain div:hover {
+  transform: scale(1.05); 
+  background-color: rgb(207, 218, 218);
 }
 
-a{
+a {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: inherit;
+  display: block; 
+  width: 100%; 
+  height: 100%; 
+  padding: 10px; 
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 /* design for create account */
 
@@ -119,7 +133,7 @@ a{
 
 
 .create-account-Main label , input ,button{
-  margin: 2rem;
+  
   text-decoration: none;
   font-size: 1.5rem;
   padding: 1rem;
@@ -127,18 +141,40 @@ a{
   border: 1px solid rgb(0, 0, 0);
 }
 
+#create-account{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.create-account-Main input{
+  width: 20vw;
+}
+
+.create-account-Main label {
+ width: 20vw;
+ background-color: salmon;
+ display: block; 
+
+}
+
 .create-account-Main button{
-  background-color: rgb(49, 236, 32);
+  margin-top: 5vh;
+  background-color: rgb(4, 51, 63);
   color: rgb(255, 255, 255);
+  transition: background-color 0.3s;
   
 }
 .create-account-Main button:hover{
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  transform: scale(1.05); 
 }
 
 /* design for accounts */
-
 
 .accounts-Main{
   width: 70vw;
@@ -183,3 +219,46 @@ a{
   color: rgb(0, 0, 0);
 }
 
+
+/* transactionHisrory design part */
+
+.transaction-history-Main h1{
+  font-size: 2rem;
+}
+
+.transaction-history-Main p{
+  
+  height: 3vh;
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+#history-table{
+  /* background-color: rgba(0,0,0, .4); */
+  width: 100%;
+}
+#history-table th{
+  background-color:rgba(0,0,0, .5);
+  font-size: 1.5rem;
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+#history-table td{
+  font-size: 1.2rem;
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid rgb(0, 0, 0)
+}
+
+#history-table tr:nth-child(even){
+  background-color:rgba(0,0,0, .3);
+ 
+}
+
+/* #history-table tr:nth-child(odd){
+
+
+} */

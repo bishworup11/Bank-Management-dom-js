@@ -18,26 +18,38 @@
           <li><a href="accounts.html">Accounts</a></li>
         </ul>
       </nav>
-      <div class="heroBanner"><h1>Transaction History</h1></div>
+      <div class="heroBanner"><h1>Bank Managment System</h1></div>
     </header>
 
     <main class="transaction-history-Main">
       <div id="account-details">
-        <!-- Account details will be dynamically filled here -->
+     
       </div>
 
-      <h2>Transaction History</h2>
+      <h1>Transaction History</h1>
       <div id="history-list">
-        <!-- Transaction history will be dynamically filled here -->
-      </div>
+        <table id="history-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+            
+        </table>
+    </div>
+    
     </main>
 
     <footer></footer>
-
-    <script src="script.js"></script>
+   <script src="script.js"></script>
     <script>
-      // Call loadTransactionHistory when the page loads
-      window.onload = loadTransactionHistory;
+        document.addEventListener('DOMContentLoaded', loadTransactionHistory);
     </script>
   </body>
+  
 </html>
