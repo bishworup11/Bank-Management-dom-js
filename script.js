@@ -120,7 +120,7 @@ function deposit() {
 
   existingAccount.depositAmount += depAmount;
   existingAccount.history.push(history1);
-  // alert(`Deposited ${depAmount} to Account ${existingAccount.accno}. New balance is ${existingAccount.balance}.`);
+   alert(`Deposited ${depAmount} to Account ${existingAccount.accno}. New balance is ${existingAccount.depositAmount}.`);
 
   console.log(accnoD, depAmount, accounts, existingAccount);
   localStorage.setItem("accounts", JSON.stringify(accounts));
@@ -149,7 +149,7 @@ function withdraw() {
   existingAccount.depositAmount -= depAmount;
   existingAccount.history.push(history1);
   alert(
-    `Deposited ${depAmount} to Account ${existingAccount.accno}. New balance is ${existingAccount.balance}.`
+    `Withdraw ${depAmount} to Account ${existingAccount.accno}. New balance is ${existingAccount.depositAmount}.`
   );
 
   // console.log(accnoD,depAmount,accounts,existingAccount);
